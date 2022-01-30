@@ -117,7 +117,7 @@ console.log(`article: ${url.pathname
                                 .slice(1, -1) // remove "/" characters at the beginning and at the end of the string
                                 .split('-')
                                 .map(word => word[0].toUpperCase() + word.substr(1))
-    .join(' ')}`);
+                                .join(' ')}`);
 
 //======= Task 3 =======
 const num1 = 1234567;
