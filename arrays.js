@@ -212,7 +212,7 @@ console.log('chunk 2: ', chunk_2([1, 2, 3, 4, 5], 2));
 */
 
 //------- Solution 1 -------
-const intersectionArr = (firstArr, secondArr) => {
+const intersectionArr_1 = (firstArr, secondArr) => {
   const result = firstArr.filter((el) => {
     const indexOfElement = secondArr.indexOf(el);
     if (indexOfElement >= 0) {
@@ -221,8 +221,7 @@ const intersectionArr = (firstArr, secondArr) => {
   });
   return Array.from(new Set(result));
 };
-// console.log('intersectionArr: ', intersectionArr([1, 2], [2, 3], [3, 5], [5, 6]));
-console.log('intersectionArr: ', intersectionArr([1, 2], [2, 3]));
+console.log('intersectionArr 1: ', intersectionArr_1([1, 2], [2, 3]));
 
 //------- Solution 2 -------
 const intersectionArr_2 = (...arrays) => {
@@ -238,4 +237,4 @@ const intersectionArr_2 = (...arrays) => {
   return Array.from(new Set(result));
 };
 // console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3], [3, 5], [5, 6]));
-console.log('intersectionArr: ', intersectionArr([1, 2], [2, 3]));
+console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3]));
