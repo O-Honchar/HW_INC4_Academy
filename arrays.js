@@ -224,17 +224,38 @@ const intersectionArr_1 = (firstArr, secondArr) => {
 console.log('intersectionArr 1: ', intersectionArr_1([1, 2], [2, 3]));
 
 //------- Solution 2 -------
-const intersectionArr_2 = (...arrays) => {
-  const result = arrays[0].filter((element) => {
-    const indexOfElement = arrays[1].indexOf(element);
-    if (indexOfElement >= 0) {
-      return element;
+function intersectionArr_2(...arrays) {
+  let result = [];
+
+  const isIncludes = (...arr) => {
+    result = arr[0].filter(el => arr[1].indexOf(el) >= 0);
+    if (arr.length > 2) {
+      isIncludes(result, ...arr.slice(2, arr.length));
     }
-  });
-  // if (arrays.length > 2) {
-  //   intersectionArr_2(result, ...arrays.slice(2, arrays.length));
-  // }
-  return Array.from(new Set(result));
-};
-// console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3], [3, 5], [5, 6]));
+    return Array.from(new Set(result));
+  };
+  isIncludes(...arrays);
+
+  return result;
+}
 console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3]));
+console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3], [4, 5], [5, 6]));
+
+
+//------- Solution 3 -------
+function intersectionArr_3(...arrays) {
+  let result = [];
+  function isIncludes(firstArr, secondArr) {
+    result = Array.from(new Set(firstArr.filter(el => secondArr.indexOf(el) >= 0)));
+  };
+  for (let i = 0; i < arrays.length - 1; i++) {
+    if (i === 0) {
+      isIncludes(arrays[i], arrays[i + 1]);
+      i += 1; // to prevent unnecessary comparison of the result with arrays[1], which was compared in the first iteration 
+    }
+    isIncludes(result, arrays[i + 1]);
+  }
+  return result;
+}
+console.log('intersectionArr 2: ', intersectionArr_2([1, 2], [2, 3]));
+console.log('intersectionArr 3: ', intersectionArr_3([1, 2], [2, 3], [4, 5], [5, 6]));
